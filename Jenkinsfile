@@ -20,7 +20,7 @@ pipeline {
 	    steps {
 		    script{
 	            withSonarQubeEnv('sonar-scanner') {
-	                sh 'sonar-scanner -Dsonar.projectKey=myProject -Dsonar.sources=./src'
+	                sh 'mvn sonar:sonar -Dsonar.projectKey=myProject -Dsonar.sources=./src'
 		    }
 	        }
 	    }
