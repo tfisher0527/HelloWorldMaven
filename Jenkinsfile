@@ -18,10 +18,10 @@ pipeline {
         }
 	stage('build && SonarQube analysis') {
 	    steps {
-		    script{
+		    
 	            withSonarQubeEnv('sonar-scanner') {
 	                sh 'mvn sonar:sonar -Dsonar.projectKey=myProject -Dsonar.sources=./src'
-		    }
+		    
 	        }
 	    }
 	}
