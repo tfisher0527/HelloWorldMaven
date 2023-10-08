@@ -16,14 +16,14 @@ pipeline {
 
             }
         }
-        stage('build && SonarQube analysis') {
-            steps {
-                withSonarQubeEnv('aws-sonar') {
-		    def scannerHome = tool name: 'aws-sonar', type: 'SonarQube Scanner Installation'
-                    sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=myProject -Dsonar.sources=./src"
-                }
-            }
-        }
+	stage('build && SonarQube analysis') {
+	    steps {
+	        withSonarQubeEnv('aws-sonar') {
+	            def scannerHome = tool name: 'aws-sonar', type: 'SonarQube Scanner Installation'
+	            sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=myProject -Dsonar.sources=./src"
+	        }
+	    }
+	}
         stage("Quality Gate") {
             steps {
                 timeout(time: 1, unit: 'HOURS') {
