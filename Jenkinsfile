@@ -19,7 +19,8 @@ pipeline {
         stage('build && SonarQube analysis') {
             steps {
                 withSonarQubeEnv('aws-sonar') {
-                    sh 'sonar-scanner -Dsonar.projectKey=myProject -Dsonar.sources=./src'
+		    def scannerHome = tool name: 'aws-sonar', type: 'SonarQube Scanner Installation'
+                    sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=myProject -Dsonar.sources=./src"
                 }
             }
         }
