@@ -18,8 +18,8 @@ pipeline {
         }
 	stage('build && SonarQube analysis') {
 	    steps {
-	            withSonarQubeEnv(installationName: 'aws-sonar') {
-	                sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:5.0.1.3006:sonar'
+	            withSonarQubeEnv('aws-sonar') {
+	                sh 'sonar-scanner -Dsonar.projectKey=myProject -Dsonar.sources=./src'
 	        }
 	    }
 	}
