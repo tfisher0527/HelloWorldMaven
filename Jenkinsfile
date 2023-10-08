@@ -21,7 +21,7 @@ pipeline {
 	        script {
 	            def scannerHome = tool name: 'aws-sonar', type: 'SonarQube Scanner Installation'
 	            withSonarQubeEnv('aws-sonar') {
-	                sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=myProject -Dsonar.sources=./src"
+	                sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:5.0.1.3006:sonar'
 	            }
 	        }
 	    }
