@@ -18,11 +18,8 @@ pipeline {
         }
 	stage('build && SonarQube analysis') {
 	    steps {
-	        script {
-	            def scannerHome = tool name: 'aws-sonar', type: 'SonarQube Scanner Installation'
-	            withSonarQubeEnv('aws-sonar') {
+	            withSonarQubeEnv(installationName: 'aws-sonar') {
 	                sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:5.0.1.3006:sonar'
-	            }
 	        }
 	    }
 	}
