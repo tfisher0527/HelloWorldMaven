@@ -17,11 +17,11 @@ pipeline {
             }
         }
 	stage('build && SonarQube analysis') {
-	    steps {
-		    
-	            withSonarQubeEnv('sonar-scanner') {
-	                sh 'mvn sonar:sonar -Dsonar.projectKey=myProject -Dsonar.sources=./src'
-		    
+	    steps {		    
+		    withSonarQubeEnv('sonar-scanner') {
+			withMaven(maven : 'apache-maven-3.9.5'){
+			sh 'mvn sonar:sonar -Dsonar.projectKey=myProject -Dsonar.sources=./src'
+			}
 	        }
 	    }
 	}
