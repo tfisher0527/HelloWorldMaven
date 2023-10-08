@@ -19,7 +19,7 @@ pipeline {
 	stage('build && SonarQube analysis') {
 	    steps {
 	            withSonarQubeEnv('aws-sonar') {
-	                sh 'sonar-scanner -Dsonar.projectKey=myProject -Dsonar.sources=./src'
+	                sh '$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectKey=myProject -Dsonar.sources=./src'
 	        }
 	    }
 	}
