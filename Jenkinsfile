@@ -17,10 +17,12 @@ pipeline {
             }
         }
 	stage('build && SonarQube analysis') {
-	    script{
-		def scannerHome = tool name: 'aws-sonar', type: 'SonarQube Scanner Installation'
-	        withSonarQubeEnv('aws-sonar') {
-	            sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=myProject -Dsonar.sources=./src"
+	    steps {
+	        script {
+	            def scannerHome = tool name: 'aws-sonar', type: 'SonarQube Scanner Installation'
+	            withSonarQubeEnv('aws-sonar') {
+	                sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=myProject -Dsonar.sources=./src"
+	            }
 	        }
 	    }
 	}
