@@ -20,7 +20,7 @@ pipeline {
 	    steps {		    
 		    withSonarQubeEnv('sonar-scanner') {
 			withMaven(maven : 'apache-maven-3.9.5'){
-			sh 'mvn sonar:sonar -Dsonar.projectKey=myProject -Dsonar.sources=./src'
+			sh 'mvn sonar:sonar -Dsonar.projectKey=myProject -Dsonar.sources=./src/main/java -Dsonar.tests=./src/test/java'
 			}
 	        }
 	    }
